@@ -1,4 +1,28 @@
 let total = 0;
+let discountPercentage = 0;
+
+function calculateAllValues() {
+    const totalPriceElement = document.getElementById('totalPrice');
+    const discountElement = document.getElementById('discount');
+    const totalElement = document.getElementById('total');
+
+    const discountAmount = total * (discountPercentage / 100);
+    const totalWithDiscount = total - discountAmount;
+
+    totalElement.innerText = totalWithDiscount.toFixed(2);
+    totalPriceElement.innerText = total.toFixed(2);
+    discountElement.innerText = discountAmount.toFixed(2);
+}
+
+function clearCart() {
+    total = 0;
+    discountPercentage = 0;
+    const selectedItemContainer = document.getElementById('cart-items');
+    selectedItemContainer.innerHTML = '';
+    calculateAllValues();
+    const cuponField = document.getElementById('cuponField');
+    cuponField.value = '';
+}
 
 function handleCard(cardElement) {
     const selectedItemContainer = document.getElementById('cart-items');
@@ -13,15 +37,45 @@ function handleCard(cardElement) {
     const totalTwoDecimal = total.toFixed(2);
     document.getElementById('totalPrice').innerText = totalTwoDecimal;
 }
-document.getElementById('cuponField').addEventListener('keyup',function(){
+
+function updatePurchaseButton() {
+    const purchaseButton = document.getElementById('purchaseButton');
+
+    if (total > 0) {
+        purchaseButton.removeAttribute('disabled');
+    }
+    else {
+        purchaseButton.setAttribute('disabled', true);
+    }
+}
+
+document.getElementById('cuponField').addEventListener('keyup', function (event) {
     const text = event.target.value;
-    if(text === 'SELL200'){
+    if (text === 'SELL200' || total >= 200) {
         cuponButton.removeAttribute('disabled')
     }
-    else{
+    else {
         cuponButton.setAttribute('disabled', true);
     }
-})
-document.getElementById('cuponButton').addEventListener('click',function(){
+    updatePurchaseButton();
+});
 
+document.getElementById('cuponButton').addEventListener('click', function () {
+    const totalElement = document.getElementById('totalPrice');
+    const totalValue = parseFloat(totalElement.innerText);
+
+    if (totalValue >= 200) {
+        discountPercentage = 20;
+    }
+    else {
+        discountPercentage = 0;
+    }
+
+    calculateAllValues();
+    updatePurchaseButton();
+})
+
+document.getElementById('goHomeButton').addEventListener('click', function () {
+    clearCart();
+    updatePurchaseButton();
 })

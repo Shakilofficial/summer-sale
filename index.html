@@ -28,9 +28,11 @@
     </header>
 
     <main class=" my-6 w-3/4 mx-auto">
+        <!--  product container-->
         <section class="flex flex-col gap-10 md:flex-col lg:flex-row">
-            <!--  product container-->
+
             <div class="mt-10">
+                <!-- Kitchenware Section -->
                 <h1 class="text-4xl font-bold mb-8">Kitchenware</h1>
                 <div class="grid grid-cols-1 px-auto md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Card -1 -->
@@ -85,6 +87,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- Sportsware Section -->
                 <h1 class="text-4xl font-bold mt-6 mb-8">Sportsware</h1>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <!-- Card -1 -->
@@ -139,6 +142,61 @@
                         </div>
                     </div>
                 </div>
+                <!-- Furniture Section -->
+                <h1 class="text-4xl font-bold mt-6 mb-8">Furniture</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Card -1 -->
+                    <div onclick="handleCard(this)" class="card w-64 bg-base-100 shadow-xl">
+                        <figure class="px-10 pt-10">
+                            <img src="./images/prod7.png" alt="Shoes" class="rounded-xl" />
+                        </figure>
+                        <div class="card-body items-center text-center">
+                            <div class="rating">
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                            </div>
+                            <h2 class="card-title">Single Relax Chair</h2>
+                            <p>185.00 TK</p>
+                        </div>
+                    </div>
+                    <!-- Card -2 -->
+                    <div onclick="handleCard(this)" class="card w-64 bg-base-100 shadow-xl">
+                        <figure class="px-10 pt-10">
+                            <img src="./images/prod8.png" alt="Shoes" class="rounded-xl" />
+                        </figure>
+                        <div class="card-body items-center text-center">
+                            <div class="rating">
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                            </div>
+                            <h2 class="card-title">Children play</h2>
+                            <p>299.00 TK</p>
+                        </div>
+                    </div>
+                    <!-- Card -3 -->
+                    <div onclick="handleCard(this)" class="card w-64 bg-base-100 shadow-xl">
+                        <figure class="px-10 pt-10">
+                            <img src="./images/prod9.png" alt="Shoes" class="rounded-xl" />
+                        </figure>
+                        <div class="card-body items-center text-center">
+                            <div class="rating">
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                                <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+                            </div>
+                            <h2 class="card-title">Flexible Sofa</h2>
+                            <p>339.00 TK</p>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!-- Cart Container -->
             <div class="min-h-min lg:w-[400px] mt-10">
@@ -153,13 +211,32 @@
                 <div class="bg-base-100 min-h-[130px] p-4 drop-shadow-md rounded-lg my-6">
                     <h2>Total Price: <span id="totalPrice">00</span> </h2>
                     <h3>Discount: <span id="discount">00</span> </h3>
-                    <h4>Total: <span>00</span> </h4>
+                    <h4>Total: <span id="total">00</span> </h4>
                     <hr>
                 </div>
 
                 <div class="text-center relative -top-10">
-                    <button class="px-8 py-2 text-xl  text-white font-semibold bg-[#E527B2] rounded-lg">Make
-                        Purchase</button>
+                    <!-- Open the modal using ID.showModal() method -->
+                    <button id="purchaseButton"
+                        class="px-8 py-2 text-xl text-white font-semibold bg-[#E527B2] rounded-lg capitalize"
+                        onclick="my_modal_4.showModal()" disabled>Make Purchase</button>
+                    <dialog id="my_modal_4" class="modal">
+                        <form method="dialog" class="modal-box">
+                            <div class="card p-8">
+                                <figure><img src="./images/congo.png" alt="" /></figure>
+                                <div class="flex card-body justify-center items-center">
+                                    <h2 class="text-5xl font-bold mb-8">Congratulations</h2>
+                                    <p>You Purchased the product</p>
+                                    <div class="modal-action">
+                                        <!-- if there is a button in form, it will close the modal -->
+                                        <button
+                                            class="px-8 py-2 text-xl  text-white font-semibold bg-[#E527B2] rounded-lg capitalize"
+                                            id="goHomeButton">Go Home</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </dialog>
                 </div>
             </div>
         </section>
